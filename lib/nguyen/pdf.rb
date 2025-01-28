@@ -17,7 +17,7 @@ module Nguyen
     def read_fields
       field_output = @pdftk.call_pdftk path, 'dump_data_fields_utf8'
       @fields = field_output.split("\n").map do |field_text|
-        if field_text =~ /^FieldName: (.+)$/
+        if field_text =~ /^FieldName: ([^\n]+)$/
           $1
         end
       end.compact.uniq
